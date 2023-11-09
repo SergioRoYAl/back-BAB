@@ -1,0 +1,103 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "kebab-server-reply",
+    "dateExported": "2023-11-09T08:45:16.285Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "0705c218-7748-44a4-b7e8-d12895e2d689",
+            "colId": "c3024ae7-2d7e-476a-9e1b-b6b781e1d148",
+            "containerId": "",
+            "name": "PEDIDO",
+            "url": "http://localhost:8040/pedido/4",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-11-02T22:21:11.963Z",
+            "modified": "2023-11-08T21:03:56.985Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1234cc0f-212c-45db-a115-b7e02abea0da",
+            "colId": "c3024ae7-2d7e-476a-9e1b-b6b781e1d148",
+            "containerId": "",
+            "name": "PEDIDO ESPECÍFICO",
+            "url": "http://localhost:8020/pedido/4",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-11-02T22:21:11.964Z",
+            "modified": "2023-11-02T22:30:27.959Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a6d8c31b-7f6e-4349-be4e-8ed7be11bfb0",
+            "colId": "c3024ae7-2d7e-476a-9e1b-b6b781e1d148",
+            "containerId": "",
+            "name": "PEDIDO",
+            "url": "http://localhost:8020/pedido",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-11-02T22:21:11.965Z",
+            "modified": "2023-11-02T22:24:11.185Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"user\": \"Kisser4k\",\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb2dd937-b332-465a-889e-76513f38abdd",
+            "colId": "c3024ae7-2d7e-476a-9e1b-b6b781e1d148",
+            "containerId": "",
+            "name": "PEDIDO UPDATE",
+            "url": "http://localhost:8020/pedido",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-11-02T22:21:11.966Z",
+            "modified": "2023-11-02T22:22:58.085Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 11,\n  \"username\": \"Kisser4k\",\n  \"pedidos\": [],\n  \"nombreEmpresa\": \"GPSClientes\",\n  \"identificadorEmpresarial\": \"ax00224124\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1aa231ac-09ec-459b-a77e-9fbe3d9f7210",
+            "colId": "c3024ae7-2d7e-476a-9e1b-b6b781e1d148",
+            "containerId": "",
+            "name": "PEDIDO POPULATE",
+            "url": "http://localhost:8020/pedido/populate/5",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-11-02T22:21:11.967Z",
+            "modified": "2023-11-02T22:23:03.792Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4d50609c-23bd-4588-9ca5-5b981156d5a0",
+            "colId": "c3024ae7-2d7e-476a-9e1b-b6b781e1d148",
+            "containerId": "",
+            "name": "PEDIDO",
+            "url": "http://localhost:8020/pedido/15",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-11-02T22:21:11.968Z",
+            "modified": "2023-11-02T22:23:12.152Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
