@@ -25,8 +25,6 @@ public class PedidoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank
     @ManyToOne
     @JoinColumn(name = "id_user")
     private UserEntity user;
@@ -40,12 +38,17 @@ public class PedidoEntity {
     @Size(min=3, max=512)
     private String observaciones;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "id_establecimiento")
     private EstablecimientoEntity establecimiento;
 
-    public PedidoEntity(Long id, @NotNull @NotBlank UserEntity user, @NotBlank LocalDate fecha,
-            @NotNull @NotBlank @Size(min = 3, max = 512) String observaciones, EstablecimientoEntity establecimiento) {
+
+
+    public PedidoEntity(){
+
+    }
+
+    public PedidoEntity(Long id, UserEntity user,LocalDate fecha, String observaciones, EstablecimientoEntity establecimiento) {
         this.id = id;
         this.user = user;
         this.fecha = fecha;
@@ -53,8 +56,7 @@ public class PedidoEntity {
         this.establecimiento = establecimiento;
     }
 
-    public PedidoEntity(@NotNull @NotBlank UserEntity user, @NotBlank LocalDate fecha,
-            @NotNull @NotBlank @Size(min = 3, max = 512) String observaciones, EstablecimientoEntity establecimiento) {
+    public PedidoEntity(UserEntity user,LocalDate fecha, String observaciones, EstablecimientoEntity establecimiento) {
         this.user = user;
         this.fecha = fecha;
         this.observaciones = observaciones;

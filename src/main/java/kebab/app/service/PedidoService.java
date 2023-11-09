@@ -7,9 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kebab.app.entity.PedidoEntity;
+import kebab.app.entity.UserEntity;
 import kebab.app.exception.ResourceNotFoundException;
 import kebab.app.helper.DataGenerationHelper;
 import kebab.app.repository.PedidoRepository;
+import kebab.app.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,7 +21,19 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class PedidoService {
-    
+
+    @Autowired
+    UserRepository oUserRepository;
+
+    public Long createPedido(PedidoEntity oPedidoEntity, Long userId) {
+        UserEntity user = oUserRepository.findById(userId)
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        oPedidoEntity.setUser(user);
+
+        oPedidoEntity.setId(null);
+        return oPedidoRepository.save(oPedidoEntity).getId();
+    }
 
     public static LocalDate generateRandomDate(int startYear, int endYear) {
         int year = ThreadLocalRandom.current().nextInt(startYear, endYear + 1);
@@ -32,7 +46,7 @@ public class PedidoService {
     PedidoRepository oPedidoRepository;
 
     public PedidoEntity get(Long id){
-        return oPedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        return oPedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido not found"));
     }
 
     public Long create(PedidoEntity oPedidoEntity) {

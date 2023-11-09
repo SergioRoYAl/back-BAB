@@ -52,7 +52,7 @@ public class UserEntity {
     @Column(name = "identificador_empresarial")
     private String identificador_empresarial;
 
-    @OneToMany(mappedBy = "user", fetch = jakarta.persistence.FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = jakarta.persistence.FetchType.EAGER)
     private List<PedidoEntity> pedidos;
 
     public UserEntity(){
@@ -70,6 +70,7 @@ public class UserEntity {
         this.username = username;
         this.password = password;
         this.identificador_empresarial = identificador_empresarial;
+        pedidos = new ArrayList<>()
     }
 
     public UserEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String nombre_empresa,

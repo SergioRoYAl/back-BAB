@@ -30,12 +30,33 @@ public class EstablecimientoEntity {
     @Size(min=3, max=255)
     private String repartidor;
 
-    
+    public EstablecimientoEntity(Long id, @NotNull @NotBlank List<PedidoEntity> pedidos,
+            @NotNull @NotBlank @Size(min = 3, max = 255) String repartidor) {
+        this.id = id;
+        this.pedidos = pedidos;
+        this.repartidor = repartidor;
+    }
+
+    public EstablecimientoEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String repartidor,
+            List<PedidoEntity> pedidos) {
+        this.repartidor = repartidor;
+        this.pedidos = pedidos;
+    }
 
     public EstablecimientoEntity(Long id, @NotNull @NotBlank @Size(min = 3, max = 255) String repartidor) {
         this.id = id;
         this.repartidor = repartidor;
     }
+
+    public EstablecimientoEntity() {
+        pedidos = new java.util.ArrayList<>();
+    }
+
+    public EstablecimientoEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String repartidor) {
+        this.repartidor = repartidor;
+    }
+
+
 
     public Long getId() {
         return id;

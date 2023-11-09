@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import kebab.app.entity.UserEntity;
 import kebab.app.exception.ResourceNotFoundException;
 import kebab.app.helper.DataGenerationHelper;
@@ -19,6 +20,12 @@ public class UserService {
 
     @Autowired
     UserRepository oUserRepository;
+
+    @Transactional
+    public UserEntity getUserWithPedidos(Long userId) {
+        return oUserRepository.findById(userId)
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
 
     public UserEntity get(Long id) {
         return oUserRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
@@ -56,6 +63,8 @@ public class UserService {
             String username = DataGenerationHelper
             .doNormalizeString(nombreEmpresa.substring(0, 3) + username1.substring(1, 3)+ i);
             String identificadorEmpresarial = (DataGenerationHelper.getRadomSurname() + i);
+
+            
             oUserRepository.save(new UserEntity(nombreEmpresa, username, "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", identificadorEmpresarial));
         }
         return oUserRepository.count();
