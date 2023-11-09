@@ -37,26 +37,25 @@ public class EstablecimientoEntity {
         this.repartidor = repartidor;
     }
 
-    public EstablecimientoEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String repartidor,
+    public EstablecimientoEntity(String repartidor,
             List<PedidoEntity> pedidos) {
         this.repartidor = repartidor;
         this.pedidos = pedidos;
     }
 
-    public EstablecimientoEntity(Long id, @NotNull @NotBlank @Size(min = 3, max = 255) String repartidor) {
+
+    public EstablecimientoEntity(Long id, String repartidor) {
         this.id = id;
+        this.repartidor = repartidor;
+    }
+
+    public EstablecimientoEntity(String repartidor) {
         this.repartidor = repartidor;
     }
 
     public EstablecimientoEntity() {
         pedidos = new java.util.ArrayList<>();
     }
-
-    public EstablecimientoEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String repartidor) {
-        this.repartidor = repartidor;
-    }
-
-
 
     public Long getId() {
         return id;
@@ -66,12 +65,8 @@ public class EstablecimientoEntity {
         this.id = id;
     }
 
-    public List<PedidoEntity> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<PedidoEntity> pedidos) {
-        this.pedidos = pedidos;
+    public int getPedidos() {
+        return pedidos.size();
     }
 
     public String getRepartidor() {

@@ -2,6 +2,8 @@ package kebab.app.entity;
 
 import java.time.LocalDate;
 
+import javax.xml.crypto.Data;
+
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,6 +19,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+
 @Entity
 @Table(name = "pedido")
 public class PedidoEntity {
@@ -30,7 +33,6 @@ public class PedidoEntity {
     private UserEntity user;
 
     @DateTimeFormat
-    @NotBlank
     private LocalDate fecha;
 
     @NotNull
@@ -76,7 +78,7 @@ public class PedidoEntity {
     }
 
     public void setUser(UserEntity user) {
-        user = user;
+        this.user = user;
     }
 
     public LocalDate getFecha() {

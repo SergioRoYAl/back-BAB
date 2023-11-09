@@ -21,11 +21,11 @@ public class DataGenerationHelper {
             "otherwise", "conversely",
     };
 
-    public static String getRadomName() {
+    public static String getRandomName() {
         return aNames[(int) (Math.random() * aNames.length)];
     }
 
-    public static String getRadomSurname() {
+    public static String getRandomSurname() {
         return aSurnames[(int) (Math.random() * aSurnames.length)];
     }
 

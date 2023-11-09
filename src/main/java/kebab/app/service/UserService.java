@@ -58,11 +58,11 @@ public class UserService {
     public Long populate(Integer amount) {
         for (int i = 0; i < amount; i++) {
             
-            String username1 = DataGenerationHelper.getRadomSurname();
-            String nombreEmpresa = (DataGenerationHelper.getRadomName() + username1.substring(1, 3) + i*12);
+            String username1 = DataGenerationHelper.getRandomSurname();
+            String nombreEmpresa = (DataGenerationHelper.getRandomName() + username1.substring(1, 3) + i*12);
             String username = DataGenerationHelper
             .doNormalizeString(nombreEmpresa.substring(0, 3) + username1.substring(1, 3)+ i);
-            String identificadorEmpresarial = (DataGenerationHelper.getRadomSurname() + i);
+            String identificadorEmpresarial = (DataGenerationHelper.getRandomSurname() + i);
 
             
             oUserRepository.save(new UserEntity(nombreEmpresa, username, "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", identificadorEmpresarial));

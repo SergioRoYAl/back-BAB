@@ -16,6 +16,9 @@ import kebab.app.repository.UserRepository;
 import java.time.LocalDate;
 import java.util.concurrent.ThreadLocalRandom;
 
+import kebab.app.service.EstablecimientoService;
+import kebab.app.service.UserService;
+
 
 
 
@@ -25,15 +28,11 @@ public class PedidoService {
     @Autowired
     UserRepository oUserRepository;
 
-    public Long createPedido(PedidoEntity oPedidoEntity, Long userId) {
-        UserEntity user = oUserRepository.findById(userId)
-            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    @Autowired
+    EstablecimientoService oEstablecimientoService;
 
-        oPedidoEntity.setUser(user);
-
-        oPedidoEntity.setId(null);
-        return oPedidoRepository.save(oPedidoEntity).getId();
-    }
+    @Autowired
+    UserService oUserService;
 
     public static LocalDate generateRandomDate(int startYear, int endYear) {
         int year = ThreadLocalRandom.current().nextInt(startYear, endYear + 1);
@@ -71,11 +70,6 @@ public class PedidoService {
         Pageable oPageable = PageRequest.of((int) (Math.random() * oPedidoRepository.count()), 1);
         return oPedidoRepository.findAll(oPageable).getContent().get(0);
     }
-
-
-    @Autowired
-    UserService oUserService;
-    EstablecimientoService oEstablecimientoService;
 
     public Long populate(Integer amount) {
         for (int i = 0; i < amount; i++) {        

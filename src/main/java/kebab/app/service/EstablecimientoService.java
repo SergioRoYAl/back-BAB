@@ -66,7 +66,7 @@ public class EstablecimientoService {
 
     public Long populate(Integer amount) {
         for (int i = 0; i < amount; i++) {            
-            oEstablecimientoRepository.save(new EstablecimientoEntity(DataGenerationHelper.getRadomName()));
+            oEstablecimientoRepository.save(new EstablecimientoEntity(DataGenerationHelper.getRandomName()));
         }
         return oEstablecimientoRepository.count();
     }
