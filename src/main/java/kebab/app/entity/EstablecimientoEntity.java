@@ -20,8 +20,6 @@ public class EstablecimientoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank
     @OneToMany(mappedBy = "establecimiento", fetch = jakarta.persistence.FetchType.LAZY)
     private List<PedidoEntity> pedidos;
 
@@ -30,7 +28,7 @@ public class EstablecimientoEntity {
     @Size(min=3, max=255)
     private String repartidor;
 
-    public EstablecimientoEntity(Long id, @NotNull @NotBlank List<PedidoEntity> pedidos,
+    public EstablecimientoEntity(Long id, List<PedidoEntity> pedidos,
             @NotNull @NotBlank @Size(min = 3, max = 255) String repartidor) {
         this.id = id;
         this.pedidos = pedidos;

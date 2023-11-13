@@ -3,6 +3,8 @@ package kebab.app.service;
 import java.time.LocalDate;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.xml.crypto.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,7 +38,9 @@ public class EstablecimientoService {
     }
 
     public Long delete(Long id) {
-        oEstablecimientoRepository.deleteById(id);
+        EstablecimientoEntity oEstablecimientoEntity = oEstablecimientoRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Establecimiento not found"));
+        oEstablecimientoRepository.deleteById(oEstablecimientoEntity.getId());
         return id;
     }
 
@@ -49,14 +53,6 @@ public class EstablecimientoService {
         return oEstablecimientoRepository.findAll(oPageable).getContent().get(0);
     }
 
-    public static LocalDate generateRandomDate(int startYear, int endYear) {
-        int year = ThreadLocalRandom.current().nextInt(startYear, endYear + 1);
-        int month = ThreadLocalRandom.current().nextInt(1, 13); // Meses del 1 al 12
-        int day = ThreadLocalRandom.current().nextInt(1, LocalDate.of(year, month, 1).lengthOfMonth() + 1);
-
-        return LocalDate.of(year, month, day);
-    }
-
     
 
     @Autowired
@@ -66,7 +62,7 @@ public class EstablecimientoService {
 
     public Long populate(Integer amount) {
         for (int i = 0; i < amount; i++) {            
-            oEstablecimientoRepository.save(new EstablecimientoEntity(DataGenerationHelper.getRandomName()));
+            oEstablecimientoRepository.save(new EstablecimientoEntity(String.valueOf(i) + DataGenerationHelper.getRandomName()));
         }
         return oEstablecimientoRepository.count();
     }

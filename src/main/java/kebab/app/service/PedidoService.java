@@ -10,6 +10,7 @@ import kebab.app.entity.PedidoEntity;
 import kebab.app.entity.UserEntity;
 import kebab.app.exception.ResourceNotFoundException;
 import kebab.app.helper.DataGenerationHelper;
+import kebab.app.repository.EstablecimientoRepository;
 import kebab.app.repository.PedidoRepository;
 import kebab.app.repository.UserRepository;
 
@@ -34,6 +35,9 @@ public class PedidoService {
     @Autowired
     UserService oUserService;
 
+    @Autowired
+    EstablecimientoRepository oEstablecimientoRepository;
+
     public static LocalDate generateRandomDate(int startYear, int endYear) {
         int year = ThreadLocalRandom.current().nextInt(startYear, endYear + 1);
         int dayOfYear = ThreadLocalRandom.current().nextInt(1, LocalDate.of(year, 12, 31).getDayOfYear() + 1);
@@ -50,6 +54,10 @@ public class PedidoService {
 
     public Long create(PedidoEntity oPedidoEntity) {
         oPedidoEntity.setId(null);
+        oPedidoEntity.setUser(oUserService.get(oPedidoEntity.getUser().getId()));
+        oPedidoEntity.setEstablecimiento(oEstablecimientoService.get(oPedidoEntity.getEstablecimiento().getId()));
+        if(oPedidoEntity.getFecha() == null)
+            oPedidoEntity.setFecha(generateRandomDate(2000, 2022));
         return oPedidoRepository.save(oPedidoEntity).getId();
     }
 

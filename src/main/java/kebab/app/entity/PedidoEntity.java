@@ -65,6 +65,8 @@ public class PedidoEntity {
         this.establecimiento = establecimiento;
     }
 
+    
+
     public Long getId() {
         return id;
     }
