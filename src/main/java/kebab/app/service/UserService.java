@@ -46,6 +46,11 @@ public class UserService {
         return id;
     }
 
+    public UserEntity getByUsername(String username) {
+        return oUserRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found by username"));
+    }
+
     public Page<UserEntity> getPage(Pageable oPageable) {
         return oUserRepository.findAll(oPageable);
     }
@@ -65,9 +70,12 @@ public class UserService {
             String identificadorEmpresarial = (DataGenerationHelper.getRandomSurname() + i);
 
             
-            oUserRepository.save(new UserEntity(nombreEmpresa, username, "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", identificadorEmpresarial));
+            oUserRepository.save(new UserEntity(nombreEmpresa, username, "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", identificadorEmpresarial, true));
         }
         return oUserRepository.count();
     }
 
+    public Page<UserEntity> byPedidosNumberDesc(Pageable oPageable) {
+        return oUserRepository.findUsersByRepliesNumberDescFilter(oPageable);
+    }
 }

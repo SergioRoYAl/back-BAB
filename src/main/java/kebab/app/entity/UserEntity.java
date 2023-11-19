@@ -55,6 +55,9 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", fetch = jakarta.persistence.FetchType.LAZY)
     private List<PedidoEntity> pedidos;
 
+
+    private Boolean role = false;
+
     public UserEntity(){
         pedidos = new ArrayList<>();
     }
@@ -64,22 +67,26 @@ public class UserEntity {
     public UserEntity(Long id, @NotNull @NotBlank @Size(min = 3, max = 255) String nombre_empresa,
             @NotNull @NotBlank @Size(min = 3, max = 24) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric") String username,
             @NotNull @NotBlank @Size(min = 64, max = 64) @Pattern(regexp = "^[a-fA-F0-9]+$", message = "Password must be hexadecimal") String password,
-            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial) {
+            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial,
+            Boolean role) {
         this.id = id;
         this.nombre_empresa = nombre_empresa;
         this.username = username;
         this.password = password;
         this.identificador_empresarial = identificador_empresarial;
+        this.role = role;
     }
 
     public UserEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String nombre_empresa,
             @NotNull @NotBlank @Size(min = 3, max = 24) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric") String username,
             @NotNull @NotBlank @Size(min = 64, max = 64) @Pattern(regexp = "^[a-fA-F0-9]+$", message = "Password must be hexadecimal") String password,
-            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial) {
+            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial,
+            Boolean role) {
         this.nombre_empresa = nombre_empresa;
         this.username = username;
         this.password = password;
         this.identificador_empresarial = identificador_empresarial;
+        this.role = role;
     }
 
 
@@ -89,6 +96,16 @@ public class UserEntity {
             @NotNull @NotBlank @Size(min = 64, max = 64) @Pattern(regexp = "^[a-fA-F0-9]+$", message = "Password must be hexadecimal") String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Boolean getRole() {
+        return role;
+    }
+
+
+
+    public void setRole(Boolean role) {
+        this.role = role;
     }
 
 
