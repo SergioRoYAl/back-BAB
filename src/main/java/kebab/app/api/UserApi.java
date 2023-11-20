@@ -50,6 +50,11 @@ public class UserApi {
         return ResponseEntity.ok(oUserService.delete(id));
     }
 
+    @DeleteMapping("/empty")
+    public ResponseEntity<Long> empty() {
+        return ResponseEntity.ok(oUserService.empty());
+    }
+
     @GetMapping("")
     public ResponseEntity<Page<UserEntity>> getPage(Pageable oPageable) {
         return ResponseEntity.ok(oUserService.getPage(oPageable));

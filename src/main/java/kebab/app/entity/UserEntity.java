@@ -67,14 +67,34 @@ public class UserEntity {
     public UserEntity(Long id, @NotNull @NotBlank @Size(min = 3, max = 255) String nombre_empresa,
             @NotNull @NotBlank @Size(min = 3, max = 24) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric") String username,
             @NotNull @NotBlank @Size(min = 64, max = 64) @Pattern(regexp = "^[a-fA-F0-9]+$", message = "Password must be hexadecimal") String password,
-            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial,
-            Boolean role) {
+            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial, Boolean role) {
         this.id = id;
         this.nombre_empresa = nombre_empresa;
         this.username = username;
         this.password = password;
         this.identificador_empresarial = identificador_empresarial;
         this.role = role;
+    }
+
+    public UserEntity(Long id, @NotNull @NotBlank @Size(min = 3, max = 255) String nombre_empresa,
+            @NotNull @NotBlank @Size(min = 3, max = 24) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric") String username,
+            @NotNull @NotBlank @Size(min = 64, max = 64) @Pattern(regexp = "^[a-fA-F0-9]+$", message = "Password must be hexadecimal") String password,
+            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial) {
+        this.id = id;
+        this.nombre_empresa = nombre_empresa;
+        this.username = username;
+        this.password = password;
+        this.identificador_empresarial = identificador_empresarial;
+    }
+
+    public UserEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String nombre_empresa,
+            @NotNull @NotBlank @Size(min = 3, max = 24) @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric") String username,
+            @NotNull @NotBlank @Size(min = 64, max = 64) @Pattern(regexp = "^[a-fA-F0-9]+$", message = "Password must be hexadecimal") String password,
+            @NotNull @NotBlank @Size(min = 3, max = 255) String identificador_empresarial) {
+        this.nombre_empresa = nombre_empresa;
+        this.username = username;
+        this.password = password;
+        this.identificador_empresarial = identificador_empresarial;
     }
 
     public UserEntity(@NotNull @NotBlank @Size(min = 3, max = 255) String nombre_empresa,

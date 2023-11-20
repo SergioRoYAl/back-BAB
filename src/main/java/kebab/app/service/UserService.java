@@ -79,7 +79,7 @@ public class UserService {
             String identificadorEmpresarial = (DataGenerationHelper.getRandomSurname() + i);
 
             
-            oUserRepository.save(new UserEntity(nombreEmpresa, username, "e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e", identificadorEmpresarial, true));
+            oUserRepository.save(new UserEntity(nombreEmpresa, username, babPassword, identificadorEmpresarial, true));
         }
         return oUserRepository.count();
     }
