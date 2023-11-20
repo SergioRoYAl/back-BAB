@@ -18,8 +18,13 @@ import kebab.app.repository.UserRepository;
 @Service
 public class UserService {
 
+    private final String babPassword = "72b37a5cce60840d1392a19392165d1e8531e4e0b6bbeb122588e73a20024ebd";
+
     @Autowired
     UserRepository oUserRepository;
+
+    @Autowired
+    SessionService oSessionService;
 
     @Transactional
     public UserEntity getUserWithPedidos(Long userId) {
@@ -33,7 +38,7 @@ public class UserService {
 
     public Long create(UserEntity oUserEntity) {
         oUserEntity.setId(null);
-        oUserEntity.setPassword("e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e");
+        oUserEntity.setPassword("72b37a5cce60840d1392a19392165d1e8531e4e0b6bbeb122588e73a20024ebd");
         return oUserRepository.save(oUserEntity).getId();
     }
 
@@ -47,20 +52,24 @@ public class UserService {
     }
 
     public UserEntity getByUsername(String username) {
+        
         return oUserRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found by username"));
     }
 
     public Page<UserEntity> getPage(Pageable oPageable) {
+        oSessionService.onlyAdmins();
         return oUserRepository.findAll(oPageable);
     }
 
     public UserEntity getOneRandom() {
+        oSessionService.onlyAdmins();
         Pageable oPageable = PageRequest.of((int) (Math.random() * oUserRepository.count()), 1);
         return oUserRepository.findAll(oPageable).getContent().get(0);
     }
 
     public Long populate(Integer amount) {
+        oSessionService.onlyAdmins();
         for (int i = 0; i < amount; i++) {
             
             String username1 = DataGenerationHelper.getRandomSurname();
@@ -77,5 +86,17 @@ public class UserService {
 
     public Page<UserEntity> byPedidosNumberDesc(Pageable oPageable) {
         return oUserRepository.findUsersByRepliesNumberDescFilter(oPageable);
+    }
+
+    @Transactional
+    public Long empty() {
+        oSessionService.onlyAdmins();
+        oUserRepository.deleteAll();
+        oUserRepository.resetAutoIncrement();
+        UserEntity oUserEntity1 = new UserEntity(1L, "BAB", "SuperSergioHola", babPassword, "MDiHCp" ,false);
+        oUserRepository.save(oUserEntity1);
+        oUserEntity1 = new UserEntity(2L, "SucedaniosStore", "SS", babPassword, "uPMgsc", true);
+        oUserRepository.save(oUserEntity1);
+        return oUserRepository.count();
     }
 }
