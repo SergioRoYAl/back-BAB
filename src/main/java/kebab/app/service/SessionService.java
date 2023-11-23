@@ -55,7 +55,7 @@ public class SessionService {
         if (this.getSessionUser() != null) {
             UserEntity oUserEntityInSession = oUserRepository.findByUsername(this.getSessionUsername())
                     .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-            return Boolean.FALSE.equals(oUserEntityInSession.getRole());
+            return Boolean.TRUE.equals(oUserEntityInSession.getRole());
         } else {
             return false;
         }
@@ -72,13 +72,13 @@ public class SessionService {
     }
 
     public void onlyAdmins() {
-        if (!this.isAdmin()) {
+        if (this.isAdmin()) {
             throw new UnauthorizedException("Only admins can do this");
         }
     }
 
     public void onlyUsers() {
-        if (!this.isUser()) {
+        if (this.isUser()) {
             throw new UnauthorizedException("Only users can do this");
         }
     }
