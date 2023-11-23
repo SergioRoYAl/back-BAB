@@ -18,6 +18,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import kebab.app.helper.DataGenerationHelper;
 
 
 @Entity
@@ -61,6 +62,13 @@ public class PedidoEntity {
     public PedidoEntity(UserEntity user,LocalDate fecha, String observaciones, EstablecimientoEntity establecimiento) {
         this.user = user;
         this.fecha = fecha;
+        this.observaciones = observaciones;
+        this.establecimiento = establecimiento;
+    }
+
+    public PedidoEntity(UserEntity user,String observaciones, EstablecimientoEntity establecimiento) {
+        this.user = user;
+        this.fecha = LocalDate.now();
         this.observaciones = observaciones;
         this.establecimiento = establecimiento;
     }

@@ -52,7 +52,7 @@ public class SessionService {
     }
 
     public Boolean isAdmin() {
-        if (this.getSessionUsername() != null) {
+        if (this.getSessionUser() != null) {
             UserEntity oUserEntityInSession = oUserRepository.findByUsername(this.getSessionUsername())
                     .orElseThrow(() -> new ResourceNotFoundException("User not found"));
             return Boolean.FALSE.equals(oUserEntityInSession.getRole());
